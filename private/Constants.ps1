@@ -1,0 +1,1 @@
+﻿New-Variable -Option Constant -Scope Script -Name 'ROOT_PHP' -Value 'C:\php'
