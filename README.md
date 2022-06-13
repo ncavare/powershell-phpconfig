@@ -1,4 +1,4 @@
-[![PowerShell Gallery Download Count](https://img.shields.io/powershellgallery/dt/PhpConfig?label=downloads%20from%20PSGallery)](https://www.powershellgallery.com/packages/PhpConfig)
+[![PowerShell Gallery Download Count](https://img.shields.io/powershellgallery/dt/PhpConfig?color=green&label=downloads%20from%20PSGallery)](https://www.powershellgallery.com/packages/PhpConfig)
 ## Introduction
 A PowerShell module that implements functions to install PHP with interactive menu
 I use phpmanager, more info here : https://github.com/mlocati/powershell-phpmanager 
