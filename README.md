@@ -1,4 +1,4 @@
-[![PowerShell Gallery Download Count](https://img.shields.io/powershellgallery/dt/PhpConfig?label=downloads%20from%20PSGallery)](https://www.powershellgallery.com/packages/PhpConfig)
+[![PowerShell Gallery Download Count](https://img.shields.io/powershellgallery/dt/PhpConfig?color=green&label=downloads%20from%20PSGallery)](https://www.powershellgallery.com/packages/PhpConfig)
 ## Introduction
 A PowerShell module that implements functions to install PHP with interactive menu
 I use phpmanager, more info here : https://github.com/mlocati/powershell-phpmanager 
@@ -21,13 +21,13 @@ Install-PhpFull -version 8.1-nts-x86 -ext common,com,odbc,mysql,imagick,sqlsrv,o
 
 ## Usage of  Set-PhpExtension
 ```powershell
-Set-PhpIIS -ext common,com,odbc,mysql,imagick,sqlsrv,opcache,xdebug -path C:\php\php-8.1-nts-x86
+Set-PhpExtension -ext common,com,odbc,mysql,imagick,sqlsrv,opcache,xdebug -path C:\php\php-8.1-nts-x86
 ```
 
 ## Usage of  Set-PhpMode
 ```powershell
-Set-PhpIIS -mode dev -path C:\php\php-8.1-nts-x86
-Set-PhpIIS -mode prod -path C:\php\php-8.1-nts-x86
+Set-PhpMode -mode dev -path C:\php\php-8.1-nts-x86
+Set-PhpMode -mode prod -path C:\php\php-8.1-nts-x86
 ```
 
 ## Usage of  Set-PhpLimit
