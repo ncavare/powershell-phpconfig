@@ -19,7 +19,7 @@ function Set-PhpSwitcher() {
 
     if ((Get-PhpSwitcher) -eq $null){
         write-host  "Initialize php switcher"
-        Initialize-PhpSwitcher -Alias "$ROOT_PHP\php"
+        Initialize-PhpSwitcher -Alias "$ROOT_PHP\php" -Scope AllUsers
     }
 
     if ((Get-PhpSwitcher) -ne $null){
