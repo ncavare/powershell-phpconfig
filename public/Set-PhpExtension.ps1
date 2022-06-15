@@ -70,6 +70,11 @@ function Set-PhpExtension() {
         Set-PhpIniKey opcache.revalidate_freq 2 -path $path
         Set-PhpIniKey opcache.cache_id '${APP_POOL_ID}' -path $path
     }
+    #----------XMLRPC------
+    if ('xmlrpc' -in $ext ){
+        write-host "Install xmlrpc"
+        Enable-PhpExtension xmlrpc -path $path
+    }
     #fix php.ini for "php manager for iis" compatibility
     Update-PhpIniForIIS -path $path
 

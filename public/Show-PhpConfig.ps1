@@ -47,7 +47,7 @@ function Show-PhpConfig() {
 
     if ($chose_action -eq "configure"){         
         $path  = Write-Menu -items (Get-ListPhp) -prompt 'choose an install php' -returnitem     
-        if (Write-SmallMenu "Install extension xdebug (y/n) ?"){ $ext = 'imagick','sqlsrv','xdebug','opcache'} else{ $ext = 'imagick','sqlsrv','opcache'}
+        if (Write-SmallMenu "Install extension xdebug (y/n) ?"){ $ext = 'imagick','sqlsrv','xdebug','opcache', 'xmlrpc'} else{ $ext = 'imagick','sqlsrv','opcache', 'xmlrpc'}
 
         Set-PhpExtension -ext  $ext  -path  $path
         Show-PhpInfo $path
