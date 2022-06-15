@@ -29,7 +29,7 @@ function Set-PhpSwitcher() {
         }
     }
                     
-    Get-ChildItem -Path $ROOT_PHP| where {$_.name -like "php-*"} | ForEach-Object{
+    Get-ChildItem -Path $ROOT_PHP -Directory| where {$_.name -like "php-*"} | ForEach-Object{
         $namephp = Get-PhpNameForSwitcher $_.FullName  
         write-host  "Add php $namephp to switcher"   
         Add-PhpToSwitcher -Name $namephp -Path $_.FullName -Force
