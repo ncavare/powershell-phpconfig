@@ -11,32 +11,43 @@ function Set-PhpExtension() {
         write-host "Activate curl,gd,gettext,mbstring,openssl,soap,exif,fileinfo,bz2,intl,sodium"
         Enable-PhpExtension curl,gd,gettext,mbstring,openssl,soap,exif,fileinfo,bz2,intl,sodium -path $path
     }  
+    #----------XMLRPC------
+    if ('xmlrpc' -in $ext ){
+       
+        if ((get-php $path).MajorMinorVersion -eq 7.4){
+            write-host "Activate xmlrpc"
+            Enable-PhpExtension xmlrpc -path $path            
+        }else{  
+            write-host "Install xmlrpc"
+            Install-PhpExtension xmlrpc -path $path -MinimumStability beta
+        }
+    }
     #----------COM_DOTNET------
     if ('com' -in $ext ){
-        write-host "Install com_dotnet"
+        write-host "Activate com_dotnet"
         Enable-PhpExtension com_dotnet -path $path
     }
     #----------ODBC------
     if ('odbc' -in $ext ){
-        write-host "Install odbc & pdo_odbc"
+        write-host "Activate odbc & pdo_odbc"
         Enable-PhpExtension odbc -path $path
         Enable-PhpExtension pdo_odbc -path $path
     }
     #----------PGSQL-----
     if ('pgsql' -in $ext ){
-        write-host "Install pgsql & pdo_pgsql"
+        write-host "Activate pgsql & pdo_pgsql"
         Enable-PhpExtension pgsql -path $path
         Enable-PhpExtension pdo_pgsql -path $path
     }
     #----------MYSQL------
     if ('sqlite' -in $ext ){
-        write-host "Install sqlite3 & pdo_sqlite"
+        write-host "Activate sqlite3 & pdo_sqlite"
         Enable-PhpExtension sqlite3 -path $path
         Enable-PhpExtension pdo_sqlite -path $path
     }
      #----------MYSQL------
      if ('mysql' -in $ext ){
-        write-host "Install mysqli & pdo_mysql"
+        write-host "Activate mysqli & pdo_mysql"
         Enable-PhpExtension mysqli -path $path
         Enable-PhpExtension pdo_mysql -path $path
     }
@@ -59,7 +70,7 @@ function Set-PhpExtension() {
     }
     #----------OPCACHE------
     if ('opcache' -in $ext ){
-        write-host "Install opcache"
+        write-host "Activate opcache"
         Enable-PhpExtension opcache -path $path 
         Set-PhpIniKey opcache.enable 1 -path $path
         Set-PhpIniKey opcache.enable_cli 1 -path $path

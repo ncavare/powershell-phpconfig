@@ -35,7 +35,7 @@ function Show-PhpConfig() {
             1{ $chose_archi='x86'; }
             2{ $chose_archi='x64'; }     	
         }         
-        $ext  = 'common','com','odbc','mysql','imagick','sqlsrv','opcache'
+        $ext  = 'common','xmlrpc','com','odbc','mysql','imagick','sqlsrv','opcache'
         if (Write-SmallMenu "Install extension xdebug (y/n) ?"){ $ext += 'xdebug'}
         if (Write-SmallMenu "Mode DEV display_errors=on html_errors=on (y/n)?"){ $mode = 'dev' }else{ $mode = 'prod' }
 
@@ -47,7 +47,9 @@ function Show-PhpConfig() {
 
     if ($chose_action -eq "configure"){         
         $path  = Write-Menu -items (Get-ListPhp) -prompt 'choose an install php' -returnitem     
-        if (Write-SmallMenu "Install extension xdebug (y/n) ?"){ $ext = 'imagick','sqlsrv','xdebug','opcache'} else{ $ext = 'imagick','sqlsrv','opcache'}
+
+        $ext  = 'common','xmlrpc','com','odbc','mysql','imagick','sqlsrv','opcache'
+        if (Write-SmallMenu "Install extension xdebug (y/n) ?"){ $ext += 'xdebug'}
 
         Set-PhpExtension -ext  $ext  -path  $path
         Show-PhpInfo $path
