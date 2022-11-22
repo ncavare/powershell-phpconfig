@@ -84,6 +84,4 @@ function Set-PhpExtension() {
     #fix php.ini for "php manager for iis" compatibility
     Update-PhpIniForIIS -path $path
 
-    #reset files permissions
-    icacls $path /T /Q /C /RESET | Out-Null
 }

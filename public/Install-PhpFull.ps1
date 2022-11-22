@@ -32,25 +32,30 @@ function Install-PhpFull(){
             Set-Content -Path "$path\php.ini"
 
     
+
+        #configure imagick
+        New-Item -Path "$ROOT_PHP\.imagik"  -ItemType Directory -Force | Out-Null
+        Set-EnvVar -Name 'MAGICK_TEMPORARY_PATH' -Value "$ROOT_PHP\.imagik" -Process $True -User $False -Machine $True        
+
         #Configure session_save_path
         write-host "Configure session.save_path to $path\session_save_path\"
         New-Item -Path "$path\session_save_path\"  -ItemType Directory -Force | Out-Null
-        Set-PhpIniKey session.save_path "$path\session_save_path\" -path $path
+        Set-PhpIniKey session.save_path "$path\session_save_path\" -path $path        
 
         #Configure error_log
         write-host "Configure error_log to $path\error_log\php_errors.log"
         New-Item -Path "$path\error_log\"  -ItemType Directory -Force | Out-Null
-        Set-PhpIniKey error_log "$path\error_log\php_errors.log" -path $path
+        Set-PhpIniKey error_log "$path\error_log\php_errors.log" -path $path       
 
         #Configure upload_tmp_dir
         write-host "Configure upload_tmp_dir to $path\upload_tmp_dir\"
         New-Item -Path "$path\upload_tmp_dir\"  -ItemType Directory -Force | Out-Null
-        Set-PhpIniKey upload_tmp_dir "$path\upload_tmp_dir\" -path $path
+        Set-PhpIniKey upload_tmp_dir "$path\upload_tmp_dir\" -path $path       
 
         #Configure sys_temp_dir
         write-host "Configure sys_temp_dir to $path\sys_temp_dir\"
         New-Item -Path "$path\sys_temp_dir\"  -ItemType Directory -Force | Out-Null  
-        Set-PhpIniKey sys_temp_dir "$path\sys_temp_dir\" -path $path 
+        Set-PhpIniKey sys_temp_dir "$path\sys_temp_dir\" -path $path         
 
         #Configure security
         Set-PhpIniKey expose_php Off -path $path
@@ -66,6 +71,14 @@ function Install-PhpFull(){
             write-host  "Add php $namephp to switcher"   
             Add-PhpToSwitcher -Name $namephp -Path $path -Force
         }
+
+        #reset files permissions
+        icacls $path /T /Q /C /RESET | Out-Null
+        Add-AclEveryoneToPath "$ROOT_PHP\.imagik"
+        Add-AclEveryoneToPath "$path\session_save_path\" 
+        Add-AclEveryoneToPath "$path\error_log\" 
+        Add-AclEveryoneToPath "$path\upload_tmp_dir\" 
+        Add-AclEveryoneToPath "$path\sys_temp_dir\" 
     }
     end {
         $path
