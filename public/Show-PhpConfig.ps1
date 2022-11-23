@@ -7,20 +7,21 @@ function Show-PhpConfig() {
     if ($chose_action -eq $null){
         write-host "-----------------PHP CONFIG $($MyInvocation.MyCommand.ScriptBlock.Module.Version)---------------------"    
         write-host "`r`nChoose an action :"
-        $chose  = Show-Menu @('Install php';'Configure php extension';'Configure mode dev/prod';'Remove php';'Install php switcher';'Switch php version';'Configure iis';'Exit') -ReturnIndex
+        $chose  = Show-Menu @('Install php';'Configure php extension';'Configure mode dev/prod';'Update php';'Remove php';'Install php switcher';'Switch php version';'Configure iis';'Exit') -ReturnIndex
         switch ($chose){
             0{ $chose_action="install"}
             1{ $chose_action="configure"}
             2{ $chose_action="modedevprod"}
-            3{ $chose_action="remove"}
-            4{ $chose_action="installswitcher"}
-            5{ $chose_action="switchphp"}
-            6{ $chose_action="iis"}
-            7{ Return }
+            3{ $chose_action="update"}
+            4{ $chose_action="remove"}
+            5{ $chose_action="installswitcher"}
+            6{ $chose_action="switchphp"}
+            7{ $chose_action="iis"}
+            8{ Return }
         }
     }
 
-    if (($chose_action -eq "configure") -or ($chose_action -eq "modedevprod") -or ($chose_action -eq "remove")){  
+    if (($chose_action -eq "configure") -or ($chose_action -eq "modedevprod")  -or ($chose_action -eq "update") -or ($chose_action -eq "remove")){  
         write-host "`r`nChoose an install php :"
         $listphp=$(Get-ListPhp).Values  | Select -Unique 
         $path  = Show-Menu  $listphp
@@ -114,6 +115,10 @@ function Show-PhpConfig() {
         Set-PhpMode -mode $mode -path $path
         Show-PhpInfo $path
     }      
+
+    if ($chose_action -eq "update"){
+        Update-Php -path $path  
+    }
 
     if ($chose_action -eq "remove"){
         Remove-Php -path $path  
