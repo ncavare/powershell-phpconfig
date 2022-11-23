@@ -23,20 +23,27 @@ function Install-PhpFull(){
 
         #Fix php.ini 
         (Get-Content -Path "$path\php.ini") |
-            ForEach-Object {$_ -Replace ';extension=exif      ; Must be after mbstring as it depends on it', ';extension=exif'} |
-            ForEach-Object {$_ -Replace ';extension=xsl', ";extension=xsl`nextension=php_com_dotnet.dll" } |          
-            ForEach-Object {$_ -Replace ';extension=xsl', ";extension=xsl`n;extension=php_sqlsrv.dll" } |  
-            ForEach-Object {$_ -Replace ';extension=xsl', ";extension=xsl`n;extension=php_pdo_sqlsrv.dll" } | 
-            ForEach-Object {$_ -Replace ';extension=xsl', ";extension=xsl`n;extension=php_imagick.dll" } |
-            ForEach-Object {$_ -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_xdebug.dll"} |
-            Set-Content -Path "$path\php.ini"
+            ForEach-Object {
+                $line = $_
+                $line = $line -Replace ';extension=exif      ; Must be after mbstring as it depends on it', ';extension=exif'
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`nextension=php_com_dotnet.dll"      
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_sqlsrv.dll" 
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_pdo_sqlsrv.dll"
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_imagick.dll" 
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_xdebug.dll"
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_yaml.dll"
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_redis.dll"
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_trader.dll"
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_trader.dll"
+                if ($chose_version -eq '7.4') {
+                    $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_opcache.dll"
+                }else{
+                    $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_xmlrpc.dll"
+                }
+                $line
+                } |  Set-Content -Path "$path\php.ini"
 
     
-
-        #configure imagick
-        New-Item -Path "$ROOT_PHP\.imagik"  -ItemType Directory -Force | Out-Null
-        Set-EnvVar -Name 'MAGICK_TEMPORARY_PATH' -Value "$ROOT_PHP\.imagik" -Process $True -User $False -Machine $True        
-
         #Configure session_save_path
         write-host "Configure session.save_path to $path\session_save_path\"
         New-Item -Path "$path\session_save_path\"  -ItemType Directory -Force | Out-Null
@@ -74,7 +81,6 @@ function Install-PhpFull(){
 
         #reset files permissions
         icacls $path /T /Q /C /RESET | Out-Null
-        Add-AclEveryoneToPath "$ROOT_PHP\.imagik"
         Add-AclEveryoneToPath "$path\session_save_path\" 
         Add-AclEveryoneToPath "$path\error_log\" 
         Add-AclEveryoneToPath "$path\upload_tmp_dir\" 

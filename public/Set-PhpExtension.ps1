@@ -7,13 +7,52 @@ function Set-PhpExtension() {
     write-host "`nConfigure Php extention $path with $ext"
 
     #----------COMMON------
-    if ('common' -in $ext ){
-        write-host "Activate curl,gd,gettext,mbstring,openssl,soap,exif,fileinfo,bz2,intl,sodium"
-        Enable-PhpExtension curl,gd,gettext,mbstring,openssl,soap,exif,fileinfo,bz2,intl,sodium -path $path
+    if ('curl' -in $ext ){
+        write-host "Activate curl"
+        Enable-PhpExtension curl -path $path
+    }  
+    if ('gd' -in $ext ){
+        write-host "Activate gd"
+        Enable-PhpExtension gd -path $path
+    }  
+    if ('gettext' -in $ext ){
+        write-host "Activate gettext"
+        Enable-PhpExtension gettext -path $path
+    }  
+    if ('mbstring' -in $ext ){
+        write-host "Activate mbstring"
+        Enable-PhpExtension mbstring -path $path
+    }  
+    if ('openssl' -in $ext ){
+        write-host "Activate openssl"
+        Enable-PhpExtension openssl -path $path
+    }  
+    if ('soap' -in $ext ){
+        write-host "Activate soap"
+        Enable-PhpExtension soap -path $path
+    }  
+    if ('exif' -in $ext ){
+        write-host "Activate exif"
+        Enable-PhpExtension exif -path $path
+    }  
+    if ('fileinfo' -in $ext ){
+        write-host "Activate fileinfo"
+        Enable-PhpExtension fileinfo -path $path
+    }  
+    if ('bz2' -in $ext ){
+        write-host "Activate bz2"
+        Enable-PhpExtension bz2 -path $path
+    }  
+    if ('intl' -in $ext ){
+        write-host "Activate intl"
+        Enable-PhpExtension intl -path $path
+    }  
+    if ('sodium' -in $ext ){
+        write-host "Activate sodium"
+        Enable-PhpExtension sodium -path $path
     }  
     #----------XMLRPC------
-    if ('xmlrpc' -in $ext ){
-       
+    if ('xmlrpc' -in $ext ){       
         if ((get-php $path).MajorMinorVersion -eq 7.4){
             write-host "Activate xmlrpc"
             Enable-PhpExtension xmlrpc -path $path            
@@ -27,23 +66,17 @@ function Set-PhpExtension() {
         write-host "Activate com_dotnet"
         Enable-PhpExtension com_dotnet -path $path
     }
+    #----------SQLSRV------
+    if ('sqlsrv' -in $ext ){
+        write-host "Install sqlsrv & pdo_sqlsrv"
+        Install-PhpExtension sqlsrv -path $path
+        Install-PhpExtension pdo_sqlsrv -path $path
+    }
     #----------ODBC------
     if ('odbc' -in $ext ){
         write-host "Activate odbc & pdo_odbc"
         Enable-PhpExtension odbc -path $path
         Enable-PhpExtension pdo_odbc -path $path
-    }
-    #----------PGSQL-----
-    if ('pgsql' -in $ext ){
-        write-host "Activate pgsql & pdo_pgsql"
-        Enable-PhpExtension pgsql -path $path
-        Enable-PhpExtension pdo_pgsql -path $path
-    }
-    #----------MYSQL------
-    if ('sqlite' -in $ext ){
-        write-host "Activate sqlite3 & pdo_sqlite"
-        Enable-PhpExtension sqlite3 -path $path
-        Enable-PhpExtension pdo_sqlite -path $path
     }
      #----------MYSQL------
      if ('mysql' -in $ext ){
@@ -51,22 +84,22 @@ function Set-PhpExtension() {
         Enable-PhpExtension mysqli -path $path
         Enable-PhpExtension pdo_mysql -path $path
     }
-    #----------SQLSRV------
-    if ('sqlsrv' -in $ext ){
-        write-host "Install sqlsrv & pdo_sqlsrv"
-        Install-PhpExtension sqlsrv -path $path
-        Install-PhpExtension pdo_sqlsrv -path $path
+    #----------PGSQL-----
+    if ('pgsql' -in $ext ){
+        write-host "Activate pgsql & pdo_pgsql"
+        Enable-PhpExtension pgsql -path $path
+        Enable-PhpExtension pdo_pgsql -path $path
     }
+    #----------SQLITE------
+    if ('sqlite' -in $ext ){
+        write-host "Activate sqlite3 & pdo_sqlite"
+        Enable-PhpExtension sqlite3 -path $path
+        Enable-PhpExtension pdo_sqlite -path $path
+    }    
     #----------IMAGICK------
     if ('imagick' -in $ext ){
         write-host "Install imagick"
         Install-PhpExtension imagick -path $path
-    }
-    #----------XDEBUG------
-    if ('xdebug' -in $ext ){
-        write-host "Install xdebug"     
-        Install-PhpExtension xdebug -path $path     
-        Set-PhpIniKey xdebug.mode "develop,debug" -path $path
     }
     #----------OPCACHE------
     if ('opcache' -in $ext ){
@@ -81,7 +114,27 @@ function Set-PhpExtension() {
         Set-PhpIniKey opcache.revalidate_freq 2 -path $path
         Set-PhpIniKey opcache.cache_id '${APP_POOL_ID}' -path $path
     }
+    #----------XDEBUG------
+    if ('xdebug' -in $ext ){
+        write-host "Install xdebug"     
+        Install-PhpExtension xdebug -path $path     
+        Set-PhpIniKey xdebug.mode "develop,debug" -path $path
+    }
+    #----------YAML------
+    if ('yaml' -in $ext ){
+        write-host "Install yaml"     
+        Install-PhpExtension yaml -path $path     
+    }
+    #----------REDIS------
+    if ('redis' -in $ext ){
+        write-host "Install redis"     
+        Install-PhpExtension redis -path $path     
+    }
+    #----------TRADER------
+    if ('trader' -in $ext ){
+        write-host "Install trader"     
+        Install-PhpExtension trader -path $path     
+    }
     #fix php.ini for "php manager for iis" compatibility
     Update-PhpIniForIIS -path $path
-
 }

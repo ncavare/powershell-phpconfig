@@ -7,8 +7,9 @@
     PowerShellVersion = '5.0'
     FunctionsToExport = 'Install-PhpFull', 'Remove-Php', 'Set-PhpExtension','Set-PhpMode','Set-PhpLimit','Set-PhpSwitcher','Set-PhpIIS','Show-PhpInfo','Show-PhpConfig'
     RequiredModules = @(
-        @{"ModuleName"="PhpManager";"ModuleVersion"="1.26.1"}
-        @{"ModuleName"="SetEnv";"ModuleVersion"="1.0.1"}
+        @{"ModuleName"="PhpManager";"ModuleVersion"="1.26.2"}
+        @{"ModuleName"="SetEnv";"ModuleVersion"="1.0.2"}
+        @{"ModuleName"="PSMenu";"ModuleVersion"="0.1.9"}
     )
     CmdletsToExport = @()
     AliasesToExport = @()
