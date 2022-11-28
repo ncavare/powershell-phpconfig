@@ -18,6 +18,7 @@ function Set-PhpIIS() {
     cmd /c "%systemroot%\system32\inetsrv\appcmd.exe set config /section:system.webServer/fastCgi /-`"[fullPath='$path\php-cgi.exe']`"" | Out-Null
     cmd /c "%systemroot%\system32\inetsrv\appcmd.exe set config /section:system.webServer/fastCgi /+`"[fullPath='$path\php-cgi.exe']`""| Out-Null
     cmd /c "%systemroot%\system32\inetsrv\appcmd.exe set config /section:system.webServer/fastCgi /`"[fullPath='$path\php-cgi.exe']`".instanceMaxRequests:10000"| Out-Null
+    cmd /c "%systemroot%\system32\inetsrv\appcmd.exe set config /section:system.webServer/fastCgi /`"[fullPath='$path\php-cgi.exe']`".activityTimeout:360"| Out-Null
     cmd /c "%systemroot%\system32\inetsrv\appcmd.exe set config /section:system.webServer/fastCgi /`"[fullPath='$path\php-cgi.exe']`".monitorChangesTo:$path\php.ini"| Out-Null
     cmd /c "%systemroot%\system32\inetsrv\appcmd.exe set config /section:system.webServer/fastCgi /+`"[fullPath='$path\php-cgi.exe']`".environmentVariables.[name='PHP_FCGI_MAX_REQUESTS',value='10000']"| Out-Null
     cmd /c "%systemroot%\system32\inetsrv\appcmd.exe set config /section:system.webServer/fastCgi /+`"[fullPath='$path\php-cgi.exe']`".environmentVariables.[name='PHPRC',value='$path\']"| Out-Null
