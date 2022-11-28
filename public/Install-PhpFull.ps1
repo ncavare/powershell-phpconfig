@@ -31,10 +31,9 @@ function Install-PhpFull(){
                 $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_pdo_sqlsrv.dll"
                 $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_imagick.dll" 
                 $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_xdebug.dll"
-                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_yaml.dll"
-                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_redis.dll"
-                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_trader.dll"
-                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_trader.dll"
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_yaml.dll"
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_redis.dll"
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_trader.dll"
                 if ($chose_version -eq '7.4') {
                     $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_opcache.dll"
                 }else{

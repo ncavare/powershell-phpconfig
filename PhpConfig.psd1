@@ -1,6 +1,6 @@
 @{
     RootModule = 'PhpConfig.psm1'
-    ModuleVersion = '1.1.6'
+    ModuleVersion = '1.2.0'
     GUID = 'd044165f-756f-43c9-bea1-400c46a14006'
     Author = 'Nicolas Cavare'
     Description = 'A PowerShell module to configure PHP'
@@ -17,7 +17,7 @@
         PSData = @{
             Tags = 'php'
             ProjectUri = 'https://github.com/ncavare/powershell-phpconfig'
-            ReleaseNotes = 'Add xmlrpc'
+            ReleaseNotes = 'Add beautiful menu'
         }
    }
 }

@@ -56,7 +56,7 @@ function Show-PhpConfig() {
         }         
     }
 
-    if (($chose_action -eq "install") -or ($chose_action -eq "configure")) {            
+    if (($chose_action -eq "install") -or ($chose_action -eq "configure")) {   
         $ext = @(
             [pscustomobject]@{name="curl";desc="curl"}
             [pscustomobject]@{name="gd";desc="gd"}
@@ -68,16 +68,25 @@ function Show-PhpConfig() {
             [pscustomobject]@{name="fileinfo";desc="fileinfo"}
             [pscustomobject]@{name="bz2";desc="bz2"}
             [pscustomobject]@{name="intl";desc="intl"}
-            [pscustomobject]@{name="sodium";desc="sodium"}          
-            [pscustomobject]@{name="xmlrpc";desc="xmlrpc"}
-            [pscustomobject]@{name="com";desc="com_dotnet"}
-            $(Get-MenuSeparator)
+            [pscustomobject]@{name="sodium";desc="sodium"}  
+        )
+        Write-Host "`r`nSelect commun extension with 'space' validate with 'enter'"
+        $extcom=Show-Menu -MenuItems $ext -MultiSelect -InitialSelection @(0,1,2,3,4,5,6,7,8,9,10) -MenuItemFormatter { $Args | Select -Exp desc }
+        
+
+         $ext = @(
             [pscustomobject]@{name="sqlsrv";desc="sqlsrv & pdo_sqlsrv"}
             [pscustomobject]@{name="odbc";desc="odbc & pdo_odbc"}
             [pscustomobject]@{name="mysql";desc="mysqli & pdo_mysql"}
             [pscustomobject]@{name="pgsql";desc="pgsql & pdo_pgsql"}           
             [pscustomobject]@{name="sqlite";desc="sqlite3 & pdo_sqlite"}
-            $(Get-MenuSeparator)
+         )
+        Write-Host "`r`nSelect sql extension with 'space' validate with 'enter'"
+        $extsql=Show-Menu -MenuItems $ext -MultiSelect -InitialSelection @(0,1,2) -MenuItemFormatter { $Args | Select -Exp desc }
+                       
+        $ext = @(
+            [pscustomobject]@{name="xmlrpc";desc="xmlrpc"}
+            [pscustomobject]@{name="com";desc="com_dotnet"}
             [pscustomobject]@{name="imagick";desc="imagick"}   
             [pscustomobject]@{name="opcache";desc="opcache"}   #verif
             [pscustomobject]@{name="xdebug";desc="xdebug"}
@@ -85,8 +94,11 @@ function Show-PhpConfig() {
             [pscustomobject]@{name="redis";desc="redis"}
             [pscustomobject]@{name="trader";desc="trader"}        
         )
-        Write-Host "`r`nSelect extension with "space" validate with "enter""
-        $ext=Show-Menu -MenuItems $ext -MultiSelect -InitialSelection @(0,1,2,3,4,5,6,7,8,9,10,11,12,14,15,16,20,21) -MenuItemFormatter { $Args | Select -Exp desc }
+        Write-Host "`r`nSelect extra extension with 'space' validate with 'enter'"
+        $extra=Show-Menu -MenuItems $ext -MultiSelect -InitialSelection @(0,1,2,3) -MenuItemFormatter { $Args | Select -Exp desc }
+
+        $ext=$extcom + $extsql + $extra
+
         $ext=$ext | WHERE name -ne $null  | Select -Exp name
     }
 
