@@ -12,10 +12,12 @@ function Install-PhpFull(){
         $chose_archi = ($version -split '-')[2]
         if ($chose_tread -eq 'nts') {$is_tread_safe=$false }else{ $is_tread_safe=$true}
 
+        if ($chose_version -eq '8.1') {$php_version='8.1.21'}else {$php_version=$chose_version}
+
         #Install Php
         $path = "$ROOT_PHP\php-$chose_version-$chose_tread-$chose_archi"
-        write-host "Install php $chose_version in $path"
-        Install-Php -Version $chose_version -Architecture $chose_archi -ThreadSafe $is_tread_safe -InstallVC -Path $path -TimeZone "Europe/Paris" -InitialPhpIni Production -Force
+        write-host "Install php $php_version in $path"
+        Install-Php -Version $php_version -Architecture $chose_archi -ThreadSafe $is_tread_safe -InstallVC -Path $path -TimeZone "Europe/Paris" -InitialPhpIni Production -Force
 
         #Update-PhpCAInfo
         write-host "Update cacert.pem"
