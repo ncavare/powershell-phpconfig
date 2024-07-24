@@ -12,7 +12,7 @@ function Install-PhpFull(){
         $chose_archi = ($version -split '-')[2]
         if ($chose_tread -eq 'nts') {$is_tread_safe=$false }else{ $is_tread_safe=$true}
 
-        if ($chose_version -eq '8.1') {$php_version='8.1.21'}else {$php_version=$chose_version}
+        $php_version=$chose_version
 
         #Install Php
         $path = "$ROOT_PHP\php-$chose_version-$chose_tread-$chose_archi"

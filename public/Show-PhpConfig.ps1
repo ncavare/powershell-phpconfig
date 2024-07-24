@@ -33,12 +33,14 @@ function Show-PhpConfig() {
     }
     if ($chose_action -eq "install"){  
         write-host "`r`nChoose a version :"
-        $chose  = Show-Menu @('PHP 7.4';'PHP 8.0';'PHP 8.1';'Exit') -ReturnIndex
+        $chose  = Show-Menu @('PHP 7.4';'PHP 8.0';'PHP 8.1';'PHP 8.2';'PHP 8.3';'Exit') -ReturnIndex
         switch ($chose){
             0{ $chose_version="7.4"}
             1{ $chose_version="8.0"}
             2{ $chose_version="8.1"}
-            3{ Return }
+            3{ $chose_version="8.2"}
+            4{ $chose_version="8.3"}
+            5{ Return }
         }
         write-host "`r`nChoose a version :"
         $chose  = Show-Menu @('Non Thread Safe';'Thread Safe';'Exit') -ReturnIndex
@@ -48,10 +50,10 @@ function Show-PhpConfig() {
             2{ Return }  	
         }
         write-host "`r`nChoose a version :"
-        $chose  = Show-Menu @('x86';'x64';'Exit') -ReturnIndex
+        $chose  = Show-Menu @('x64';'x86';'Exit') -ReturnIndex
         switch ($chose){
-            0{ $chose_archi='x86'; }
-            1{ $chose_archi='x64'; }     
+            0{ $chose_archi='x64'; } 
+            1{ $chose_archi='x86'; }                
             2{ Return }	
         }         
     }
