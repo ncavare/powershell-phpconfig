@@ -92,6 +92,7 @@ function Show-PhpConfig() {
             [pscustomobject]@{name="imagick";desc="imagick"}   
             [pscustomobject]@{name="opcache";desc="opcache"}   #verif
             [pscustomobject]@{name="xdebug";desc="xdebug"}
+            [pscustomobject]@{name="ftp";desc="ftp"}
             [pscustomobject]@{name="yaml";desc="yaml"}
             [pscustomobject]@{name="redis";desc="redis"}
             [pscustomobject]@{name="trader";desc="trader"}        
