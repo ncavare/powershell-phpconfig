@@ -2,6 +2,7 @@ function Update-PhpIniForIIS() {
     Param($path)
     (Get-Content -Path "$path\php.ini") |
         ForEach-Object {$_ -Replace 'extension=curl', 'extension=php_curl.dll'} |
+        ForEach-Object {$_ -Replace 'extension=ftp', 'extension=php_ftp.dll'} |
         ForEach-Object {$_ -Replace 'extension=gd2', 'extension=php_gd2.dll'} |
         ForEach-Object {$_ -Replace 'extension=gd', 'extension=php_gd.dll'} |
         ForEach-Object {$_ -Replace 'extension=gettext', 'extension=php_gettext.dll' } |
@@ -33,6 +34,7 @@ function Update-PhpIniForIIS() {
         ForEach-Object {$_ -Replace 'extension=yaml', 'extension=php_yaml.dll'} |      
         ForEach-Object {$_ -Replace 'extension=redis', 'extension=php_redis.dll'} |
         ForEach-Object {$_ -Replace 'extension=trader', 'extension=php_trader.dll'} |
+        ForEach-Object {$_ -Replace 'extension=phalcon', 'extension=php_phalcon.dll'} |
         
         Set-Content -Path "$path\php.ini"
 }

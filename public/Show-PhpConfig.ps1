@@ -60,20 +60,21 @@ function Show-PhpConfig() {
 
     if (($chose_action -eq "install") -or ($chose_action -eq "configure")) {   
         $ext = @(
+            [pscustomobject]@{name="bz2";desc="bz2"}
             [pscustomobject]@{name="curl";desc="curl"}
+            [pscustomobject]@{name="ftp";desc="ftp"}
+            [pscustomobject]@{name="fileinfo";desc="fileinfo"}
             [pscustomobject]@{name="gd";desc="gd"}
             [pscustomobject]@{name="gettext";desc="gettext"}
-            [pscustomobject]@{name="mbstring";desc="mbstring"}
-            [pscustomobject]@{name="openssl";desc="openssl"}
-            [pscustomobject]@{name="soap";desc="soap"}
-            [pscustomobject]@{name="exif";desc="exif"}
-            [pscustomobject]@{name="fileinfo";desc="fileinfo"}
-            [pscustomobject]@{name="bz2";desc="bz2"}
             [pscustomobject]@{name="intl";desc="intl"}
-            [pscustomobject]@{name="sodium";desc="sodium"}  
+            [pscustomobject]@{name="mbstring";desc="mbstring"}
+            [pscustomobject]@{name="exif";desc="exif"}
+            [pscustomobject]@{name="openssl";desc="openssl"}
+            [pscustomobject]@{name="soap";desc="soap"}        
+            [pscustomobject]@{name="sodium";desc="sodium"}             
         )
         Write-Host "`r`nSelect commun extension with 'space' validate with 'enter'"
-        $extcom=Show-Menu -MenuItems $ext -MultiSelect -InitialSelection @(0,1,2,3,4,5,6,7,8,9,10) -MenuItemFormatter { $Args | Select -Exp desc }
+        $extcom=Show-Menu -MenuItems $ext -MultiSelect -InitialSelection @(0,1,2,3,4,5,6,7,8,9,10,11) -MenuItemFormatter { $Args | Select -Exp desc }
         
 
          $ext = @(
@@ -90,12 +91,12 @@ function Show-PhpConfig() {
             [pscustomobject]@{name="xmlrpc";desc="xmlrpc"}
             [pscustomobject]@{name="com";desc="com_dotnet"}
             [pscustomobject]@{name="imagick";desc="imagick"}   
-            [pscustomobject]@{name="opcache";desc="opcache"}   #verif
+            [pscustomobject]@{name="opcache";desc="opcache"}
             [pscustomobject]@{name="xdebug";desc="xdebug"}
-            [pscustomobject]@{name="ftp";desc="ftp"}
             [pscustomobject]@{name="yaml";desc="yaml"}
             [pscustomobject]@{name="redis";desc="redis"}
             [pscustomobject]@{name="trader";desc="trader"}        
+            [pscustomobject]@{name="phalcon";desc="phalcon"}
         )
         Write-Host "`r`nSelect extra extension with 'space' validate with 'enter'"
         $extra=Show-Menu -MenuItems $ext -MultiSelect -InitialSelection @(0,1,2,3) -MenuItemFormatter { $Args | Select -Exp desc }

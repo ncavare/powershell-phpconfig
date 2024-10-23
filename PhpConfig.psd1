@@ -1,6 +1,6 @@
 @{
     RootModule = 'PhpConfig.psm1'
-    ModuleVersion = '1.4.1'
+    ModuleVersion = '1.4.2'
     GUID = 'd044165f-756f-43c9-bea1-400c46a14006'
     Author = 'Nicolas Cavare'
     Description = 'A PowerShell module to configure PHP'

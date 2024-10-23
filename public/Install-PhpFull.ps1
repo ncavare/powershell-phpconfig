@@ -36,6 +36,7 @@ function Install-PhpFull(){
                 $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_yaml.dll"
                 $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_redis.dll"
                 $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_trader.dll"
+                $line = $line -Replace ';extension=xsl', ";extension=xsl`n;extension=php_phalcon.dll"
                 if ($chose_version -eq '7.4') {
                     $line = $line -Replace ';extension=xsl', ";extension=xsl`n;zend_extension=php_opcache.dll"
                 }else{

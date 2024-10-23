@@ -11,6 +11,10 @@ function Set-PhpExtension() {
         write-host "Activate curl"
         Enable-PhpExtension curl -path $path
     }  
+    if ('ftp' -in $ext ){
+        write-host "Activate ftp"
+        Enable-PhpExtension ftp -path $path
+    }  
     if ('gd' -in $ext ){
         write-host "Activate gd"
         Enable-PhpExtension gd -path $path
@@ -134,6 +138,11 @@ function Set-PhpExtension() {
     if ('trader' -in $ext ){
         write-host "Install trader"     
         Install-PhpExtension trader -path $path     
+    }
+    #----------PHALCON------
+    if ('phalcon' -in $ext ){
+        write-host "Install phalcon"     
+        Install-PhpExtension phalcon -path $path     
     }
     #fix php.ini for "php manager for iis" compatibility
     Update-PhpIniForIIS -path $path
