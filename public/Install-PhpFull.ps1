@@ -75,6 +75,11 @@ function Install-PhpFull(){
 
         Set-PhpMode -mode $mode -path $path
 
+
+        #Configure session
+        Set-PhpIniKey session.cookie_secure 1 -path $path
+        Set-PhpIniKey session.cookie_httponly 1 -path $path
+
         if ((Get-PhpSwitcher) -ne $null){
             $namephp = Get-PhpNameForSwitcher $path 
             write-host  "Add php $namephp to switcher"   
