@@ -15,6 +15,7 @@ function Update-PhpIniForIIS() {
         ForEach-Object {$_ -Replace 'extension=intl', 'extension=php_intl.dll'} |
         ForEach-Object {$_ -Replace 'extension=sodium', 'extension=php_sodium.dll' } |
         ForEach-Object {$_ -Replace 'extension=xmlrpc', 'extension=php_xmlrpc.dll' } |
+        ForEach-Object {$_ -Replace 'extension=zip', 'extension=php_zip.dll'} |
         ForEach-Object {$_ -Replace 'extension=com_dotnet', 'extension=php_com_dotnet.dll' } |
        
         ForEach-Object {$_ -Replace 'extension=sqlsrv', 'extension=php_sqlsrv.dll'} |

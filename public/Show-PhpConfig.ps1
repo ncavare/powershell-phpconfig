@@ -71,10 +71,11 @@ function Show-PhpConfig() {
             [pscustomobject]@{name="exif";desc="exif"}
             [pscustomobject]@{name="openssl";desc="openssl"}
             [pscustomobject]@{name="soap";desc="soap"}        
-            [pscustomobject]@{name="sodium";desc="sodium"}             
+            [pscustomobject]@{name="sodium";desc="sodium"}   
+            [pscustomobject]@{name="zip";desc="zip"}          
         )
         Write-Host "`r`nSelect commun extension with 'space' validate with 'enter'"
-        $extcom=Show-Menu -MenuItems $ext -MultiSelect -InitialSelection @(0,1,2,3,4,5,6,7,8,9,10,11) -MenuItemFormatter { $Args | Select -Exp desc }
+        $extcom=Show-Menu -MenuItems $ext -MultiSelect -InitialSelection @(0,1,2,3,4,5,6,7,8,9,10,11,12) -MenuItemFormatter { $Args | Select -Exp desc }
         
 
          $ext = @(
