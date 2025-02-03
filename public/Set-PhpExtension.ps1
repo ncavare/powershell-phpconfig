@@ -55,6 +55,10 @@ function Set-PhpExtension() {
         write-host "Activate sodium"
         Enable-PhpExtension sodium -path $path
     }  
+    if ('zip' -in $ext ){
+        write-host "Activate zip"
+        Enable-PhpExtension zip -path $path
+    }  
     #----------XMLRPC------
     if ('xmlrpc' -in $ext ){       
         if ((get-php $path).MajorMinorVersion -eq 7.4){
