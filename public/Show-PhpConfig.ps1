@@ -86,7 +86,7 @@ function Show-PhpConfig() {
             [pscustomobject]@{name="sqlite";desc="sqlite3 & pdo_sqlite"}
          )
         Write-Host "`r`nSelect sql extension with 'space' validate with 'enter'"
-        $extsql=Show-Menu -MenuItems $ext -MultiSelect -InitialSelection @(0,1,2) -MenuItemFormatter { $Args | Select -Exp desc }
+        $extsql=Show-Menu -MenuItems $ext -MultiSelect -InitialSelection @(0,1,2,3,4) -MenuItemFormatter { $Args | Select -Exp desc }
                        
         $ext = @(
             [pscustomobject]@{name="xmlrpc";desc="xmlrpc"}
