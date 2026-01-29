@@ -1,13 +1,13 @@
 @{
     RootModule = 'PhpConfig.psm1'
-    ModuleVersion = '1.4.5'
+    ModuleVersion = '1.5.0'
     GUID = 'd044165f-756f-43c9-bea1-400c46a14006'
     Author = 'Nicolas Cavare'
     Description = 'A PowerShell module to configure PHP'
     PowerShellVersion = '5.0'
     FunctionsToExport = 'Install-PhpFull', 'Remove-Php', 'Set-PhpExtension','Set-PhpMode','Set-PhpLimit','Set-PhpSwitcher','Set-PhpIIS','Show-PhpInfo','Show-PhpConfig'
     RequiredModules = @(
-        @{"ModuleName"="PhpManager";"ModuleVersion"="1.26.2"}
+        @{"ModuleName"="PhpManager";"ModuleVersion"="1.34.0"}
         @{"ModuleName"="SetEnv";"ModuleVersion"="1.0.2"}
         @{"ModuleName"="PSMenu";"ModuleVersion"="0.1.9"}
     )
